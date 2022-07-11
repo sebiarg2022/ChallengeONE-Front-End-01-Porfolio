@@ -4,6 +4,7 @@
 const formulario = document.getElementById("form");
 const inputs = document.querySelectorAll("input");
 
+
 //limpiar Formulario
 function limpiarErrores() {
   //guardo en var errores todos los elementos de clase error
@@ -23,6 +24,7 @@ function validar(formulario) {
   if (formulario.nombre.value.length == 0) {
     document.getElementById("errorNombre").innerText = "Campo obligatorio";
     formulario.nombre.focus();
+    limpiarErrorAutomatico()
     return false;
   }
 
@@ -30,6 +32,7 @@ function validar(formulario) {
   if (formulario.email.value.length == 0) {
     document.getElementById("errorEmail").innerText = "Campo obligatorio";
     formulario.email.focus();
+    limpiarErrorAutomatico()
     return false;
   }
 
@@ -39,6 +42,7 @@ function validar(formulario) {
   if (!re.test(formulario.email.value)) {
     document.getElementById("errorEmail").innerText = "Email Invalido";
     formulario.email.focus();
+    limpiarErrorAutomatico()
     return false;
   }
 
@@ -46,6 +50,7 @@ function validar(formulario) {
   if (formulario.asunto.value.length == 0) {
     document.getElementById("errorAsunto").innerText = "Campo obligatorio";
     formulario.asunto.focus();
+    limpiarErrorAutomatico()
     return false;
   }
 
@@ -53,6 +58,7 @@ function validar(formulario) {
   if (formulario.mensaje.value.length == 0) {
     document.getElementById("errorMensaje").innerText = "Campo obligatorio";
     formulario.mensaje.focus();
+    limpiarErrorAutomatico()
     return false;
   }
 
@@ -60,10 +66,19 @@ function validar(formulario) {
     document.getElementById("errorMensaje").innerText =
       "El mensaje puede tener max.300 caracteres";
     formulario.mensaje.focus();
+    limpiarErrorAutomatico()
     return false;
   }
 
   alert("Registro Exitoso");
 
   return true;
+}
+
+//se ejecute el limpiar error de forma automatica
+let automatico;
+
+function limpiarErrorAutomatico() {
+
+  automatico = setTimeout(limpiarErrores, 3000);
 }
